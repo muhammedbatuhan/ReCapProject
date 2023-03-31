@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Core.Utilities.Results.Abstract;
 
-namespace Core.Utilities.Results
+namespace Core.Utilities.Results.Concrete
 {
     public class Result : IResult
     {
 
-        public Result(bool success, string messagee):this(success)
+        public Result(bool success, string messagee) : this(success)
         {
             Message = messagee;
             Success = success;
