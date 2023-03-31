@@ -19,12 +19,14 @@ namespace DataAccsess.Concrete.EntityFramework
             using (mbgContext context = new mbgContext())
             {
                 var result = from c in context.Cars
-                             join k in context.Colors
-                             on c.Id equals k.Id
+                             join b in context.Brands
+                             on   c.BrandId equals b.Id     
+                             join cr in context.Colors
+                             on c.ColorId equals cr.Id
                              select new CarDetailDto 
-                             {
-                                 BrandName = k.Name, CarName = c.CarName,
-                                 ColorName = k.Name, DailyPrice = c.DailyPrice
+                             {     
+                                 BrandName = b.Name, CarName = c.Description,
+                                 ColorName = cr.Name, DailyPrice = c.DailyPrice
                              };
                 return result.ToList();
 

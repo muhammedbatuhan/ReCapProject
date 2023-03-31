@@ -2,6 +2,7 @@
 using DataAccsess.Concrete.EntityFramework;
 using DataAccsess.Concrete.InMemory;
 using Entities.Concrete;
+using Microsoft.EntityFrameworkCore.Migrations.Operations;
 using System;
 
 namespace ConsoleUI
@@ -19,7 +20,7 @@ namespace ConsoleUI
             ColorManager colorManager = new ColorManager(new EfColorDal());
             foreach (var color in colorManager.GetAll())
             {
-                Console.WriteLine(color.Name);
+                //Console.WriteLine(color.Name);
 
             }
         }
@@ -32,9 +33,9 @@ namespace ConsoleUI
 
             if (result.Success==true)
             {
-                foreach (var car in result.Data)
+                foreach (var car in carManager.GetCarDetails().Data)
                 {
-                    Console.WriteLine(car.BrandName + "/" + car.CarName);
+                    Console.WriteLine(car.BrandName + car.ColorName + car.DailyPrice);
                 }
             }
 
@@ -43,15 +44,6 @@ namespace ConsoleUI
                 Console.WriteLine(result.Message);
 
             }
-
-
-
-
-            //Car car1 = new Car { BrandId = 10, ColorId = 12, DailyPrice = -400000, ModelYear = 2010, Description = "HONDA" };
-            //carManager.Add(car1);
-
-
-
         }
     }
 }
